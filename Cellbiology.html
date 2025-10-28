@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1 (Cell Biology) Interactive End of Unit Assessment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for aesthetic appeal */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+        }
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out;
+        }
+        .question-box {
+            border-left: 5px solid #3b82f6;
+        }
+        .feedback-box {
+            transition: all 0.5s ease;
+        }
+        .grade-u { background-color: #ef4444; }
+        .grade-1, .grade-2 { background-color: #f97316; }
+        .grade-3, .grade-4 { background-color: #f59e0b; }
+        .grade-5, .grade-6 { background-color: #22c55e; }
+        .grade-7, .grade-8 { background-color: #3b82f6; }
+        .grade-9 { background-color: #8b5cf6; }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        <header class="text-center mb-10 p-6 bg-white rounded-xl shadow-lg">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900">Unit 1 (Cell Biology)</h1>
+            <h2 class="text-xl sm:text-2xl font-semibold text-blue-600 mt-1">Interactive End of Unit Assessment</h2>
+            <p id="auth-status" class="text-sm text-gray-500 mt-2"></p>
+        </header>
+
+        <!-- Assessment Questions Section -->
+        <main id="questions-container" class="space-y-8">
+            <!-- Question 1 -->
+            <div class="card p-6 question-box">
+                <h3 class="text-xl font-bold mb-3 text-gray-800">Q1: Investigating Osmosis in Slugs (6 marks)</h3>
+                <p class="text-gray-600 mb-4">Amy noticed that when she sprinkled salt on slugs during wet weather, the slugs shrank and died. Describe an investigation Amy could carry out to find out how different concentrations of salt solution affect the mass of slugs.</p>
+                <p class="text-sm text-gray-500 mb-4">In your answer, include details about: what variables should be changed, measured, and kept the same, the method used to collect accurate results, and how Amy could ensure the investigation is reliable and valid.</p>
+                <textarea id="answer-1" rows="6" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="Write your detailed answer here..."></textarea>
+                <div id="feedback-1" class="feedback-box mt-4 p-3 rounded-lg hidden"></div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="card p-6 question-box">
+                <h3 class="text-xl font-bold mb-3 text-gray-800">Q2: Determining Mean Actual Cell Size (6 marks)</h3>
+                <p class="text-gray-600 mb-4">Describe how you would determine the mean actual size of an onion cell when observing a thin layer of onion tissue under a light microscope.</p>
+                <p class="text-sm text-gray-500 mb-4">In your answer, include details about: how to measure the image size of several cells, how to calculate the actual size using the magnification formula, and how to obtain a reliable mean value.</p>
+                <textarea id="answer-2" rows="6" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="Write your detailed answer here..."></textarea>
+                <div id="feedback-2" class="feedback-box mt-4 p-3 rounded-lg hidden"></div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="card p-6 question-box">
+                <h3 class="text-xl font-bold mb-3 text-gray-800">Q3: Red Blood Cell Adaptations (6 marks)</h3>
+                <p class="text-gray-600 mb-4">Explain how the structure of a red blood cell is adapted to its function of transporting oxygen around the body.</p>
+                <p class="text-sm text-gray-500 mb-4">(This is a maximum of 6 marks)</p>
+                <textarea id="answer-3" rows="6" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="Write your detailed answer here..."></textarea>
+                <div id="feedback-3" class="feedback-box mt-4 p-3 rounded-lg hidden"></div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="card p-6 question-box">
+                <h3 class="text-xl font-bold mb-3 text-gray-800">Q4: Mitosis and Skin Repair (6 marks)</h3>
+                <p class="text-gray-600 mb-4">A doctor is studying how quickly skin cells repair after a cut. The doctor explains that mitosis is the process responsible for producing new cells to replace those that are damaged. Explain the role of mitosis in repairing the skin after injury and describe why errors in mitosis could lead to health problems.</p>
+                <p class="text-sm text-gray-500 mb-4">(This is a maximum of 6 marks)</p>
+                <textarea id="answer-4" rows="6" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="Write your detailed answer here..."></textarea>
+                <div id="feedback-4" class="feedback-box mt-4 p-3 rounded-lg hidden"></div>
+            </div>
+
+            <!-- Submission and Results -->
+            <div class="mt-10 p-6 card">
+                <button id="submit-btn" onclick="submitAssessment()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition duration-200 shadow-md disabled:bg-gray-400">
+                    Submit Assessment and Get Feedback
+                </button>
+
+                <div id="loading-indicator" class="mt-4 text-center text-blue-600 font-semibold hidden">
+                    Marking in progress... Please wait.
+                </div>
+
+                <div id="results-summary" class="mt-6 border-t pt-4 hidden">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Assessment Results</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                        <div class="p-4 bg-gray-100 rounded-lg">
+                            <p class="text-sm font-medium text-gray-600">Total Score</p>
+                            <p id="total-score" class="text-3xl font-extrabold text-blue-600 mt-1">0 / 24</p>
+                        </div>
+                        <div class="p-4 bg-gray-100 rounded-lg">
+                            <p class="text-sm font-medium text-gray-600">Percentage</p>
+                            <p id="percentage" class="text-3xl font-extrabold text-blue-600 mt-1">0.0%</p>
+                        </div>
+                        <div id="grade-box" class="p-4 text-white rounded-lg">
+                            <p class="text-sm font-medium">Final Grade</p>
+                            <p id="grade" class="text-3xl font-extrabold mt-1">U</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Firebase and Application Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- GLOBAL VARIABLES (Provided by Canvas Environment) ---
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        const API_KEY = "AIzaSyBCDgq6bBo9brgnle1etpQSBiSMgvZYalM"; // Placeholder for Gemini API Key
+
+        // Initialize Firebase
+        let app, db, auth;
+        let userId = 'anonymous';
+
+        if (firebaseConfig) {
+            try {
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // Authenticate User
+                (async () => {
+                    try {
+                        if (initialAuthToken) {
+                            const userCredential = await signInWithCustomToken(auth, initialAuthToken);
+                            userId = userCredential.user.uid;
+                        } else {
+                            const userCredential = await signInAnonymously(auth);
+                            userId = userCredential.user.uid;
+                        }
+                        document.getElementById('auth-status').textContent = `User ID: ${userId} (Authenticated)`;
+                    } catch (error) {
+                        console.error("Firebase Auth Error:", error);
+                        document.getElementById('auth-status').textContent = `Authentication failed: ${error.message}`;
+                    }
+                })();
+            } catch (error) {
+                console.error("Firebase Initialization Error:", error);
+                document.getElementById('auth-status').textContent = `Firebase init failed: ${error.message}`;
+            }
+        } else {
+            console.warn("Firebase config not found. App will run without persistence.");
+            document.getElementById('auth-status').textContent = 'Running in offline mode.';
+        }
+
+        // Expose function globally for the button click
+        window.submitAssessment = submitAssessment;
+
+        // --- GEMINI API LOGIC ---
+        const MODEL = 'gemini-2.5-flash-preview-09-2025';
+
+        const gradeSchema = {
+            type: "OBJECT",
+            properties: {
+                "score": {
+                    "type": "INTEGER",
+                    "description": "The score awarded for the answer, an integer between 0 and 6."
+                },
+                "feedback": {
+                    "type": "STRING",
+                    "description": "Detailed, constructive feedback on the answer, explaining what was correct and what was missing to achieve the full 6 marks."
+                }
+            },
+            propertyOrdering: ["score", "feedback"]
+        };
+
+        const systemInstruction = (questionText, maxMarks) => `
+            You are a rigorous, helpful, and fair high school science examiner.
+            Your task is to grade a student's response to the following question.
+            The maximum possible score is ${maxMarks} marks.
+            
+            Question: ${questionText}
+            
+            Criteria for a full score (6 marks): The answer must be scientifically accurate, logically structured, and cover all aspects specified in the prompt (variables, method, reliability/validity for Q1; measurement, calculation, mean for Q2; all main adaptations for Q3; role AND errors for Q4).
+            
+            1. Assign an integer score from 0 to 6 based on the completeness and accuracy of the response.
+            2. Provide detailed, specific, and constructive feedback explaining the score and suggesting how the student could improve to reach the full 6 marks.
+            3. Output the result ONLY as a JSON object matching the provided schema.
+        `;
+
+        /**
+         * Calls the Gemini API to mark a single question.
+         * @param {number} questionNumber - The number of the question (1-4).
+         * @param {string} questionText - The full text of the question.
+         * @param {string} answerText - The student's response.
+         * @returns {Promise<{score: number, feedback: string}>}
+         */
+        async function markQuestion(questionNumber, questionText, answerText) {
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
+            const userQuery = `Mark the following student response for Question ${questionNumber}:\n\nStudent Answer: ${answerText}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemInstruction(questionText, 6) }] },
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: gradeSchema
+                }
+            };
+
+            let lastError = null;
+            // Exponential backoff for API calls
+            for (let i = 0; i < 3; i++) { // Max 3 retries
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errorBody = await response.json();
+                        throw new Error(`API returned status ${response.status}: ${JSON.stringify(errorBody)}`);
+                    }
+
+                    const result = await response.json();
+                    const jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (jsonText) {
+                        const parsedJson = JSON.parse(jsonText);
+                        // Ensure score is clamped to 0-6
+                        parsedJson.score = Math.max(0, Math.min(6, parseInt(parsedJson.score, 10)));
+                        return parsedJson;
+                    }
+                    throw new Error("API response was missing expected JSON text content.");
+
+                } catch (error) {
+                    lastError = error;
+                    console.warn(`Attempt ${i + 1} failed for Q${questionNumber}. Retrying in ${Math.pow(2, i)}s...`, error);
+                    if (i < 2) {
+                        await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
+                    }
+                }
+            }
+            console.error(`Failed to mark Q${questionNumber} after all retries.`, lastError);
+            return { score: 0, feedback: `Error: Could not retrieve automated marking. Please check your network connection or try again later. (Details: ${lastError?.message || 'Unknown error'})` };
+        }
+
+        /**
+         * Calculates the final grade based on the percentage.
+         * @param {number} percentage - The overall score percentage (0-100).
+         * @returns {{grade: string, className: string}}
+         */
+        function calculateGrade(percentage) {
+            let grade, className;
+            if (percentage > 75) { grade = 'Grade 9'; className = 'grade-9'; }
+            else if (percentage >= 70) { grade = 'Grade 8'; className = 'grade-8'; }
+            else if (percentage >= 60) { grade = 'Grade 7'; className = 'grade-7'; }
+            else if (percentage >= 50) { grade = 'Grade 6'; className = 'grade-6'; }
+            else if (percentage >= 45) { grade = 'Grade 5'; className = 'grade-5'; }
+            else if (percentage >= 40) { grade = 'Grade 4'; className = 'grade-4'; }
+            else if (percentage >= 30) { grade = 'Grade 3'; className = 'grade-3'; }
+            else if (percentage >= 20) { grade = 'Grade 2'; className = 'grade-2'; }
+            else if (percentage >= 10) { grade = 'Grade 1'; className = 'grade-1'; }
+            else { grade = 'U'; className = 'grade-u'; }
+            return { grade, className };
+        }
+
+        /**
+         * Main function to handle the assessment submission.
+         */
+        async function submitAssessment() {
+            const submitBtn = document.getElementById('submit-btn');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const resultsSummary = document.getElementById('results-summary');
+
+            // 1. Disable button and show loading indicator
+            submitBtn.disabled = true;
+            loadingIndicator.classList.remove('hidden');
+            resultsSummary.classList.add('hidden');
+
+            const questions = [
+                { id: 1, text: document.querySelector('.question-box:nth-child(1) > p:nth-child(2)').textContent.trim() + ' ' + document.querySelector('.question-box:nth-child(1) > p:nth-child(3)').textContent.trim(), answer: document.getElementById('answer-1').value.trim() },
+                { id: 2, text: document.querySelector('.question-box:nth-child(2) > p:nth-child(2)').textContent.trim() + ' ' + document.querySelector('.question-box:nth-child(2) > p:nth-child(3)').textContent.trim(), answer: document.getElementById('answer-2').value.trim() },
+                { id: 3, text: document.querySelector('.question-box:nth-child(3) > p:nth-child(2)').textContent.trim() + ' ' + document.querySelector('.question-box:nth-child(3) > p:nth-child(3)').textContent.trim(), answer: document.getElementById('answer-3').value.trim() },
+                { id: 4, text: document.querySelector('.question-box:nth-child(4) > p:nth-child(2)').textContent.trim() + ' ' + document.querySelector('.question-box:nth-child(4) > p:nth-child(3)').textContent.trim(), answer: document.getElementById('answer-4').value.trim() },
+            ];
+
+            let totalScore = 0;
+            const MAX_TOTAL_SCORE = 24;
+
+            // 2. Process each question concurrently
+            const markingPromises = questions.map(q => markQuestion(q.id, q.text, q.answer));
+            const results = await Promise.all(markingPromises);
+
+            // 3. Update UI with scores and feedback
+            results.forEach((result, index) => {
+                const qId = index + 1;
+                const feedbackEl = document.getElementById(`feedback-${qId}`);
+                totalScore += result.score;
+
+                feedbackEl.classList.remove('hidden');
+                feedbackEl.innerHTML = `
+                    <p class="font-bold text-lg mb-1 text-gray-800">Score: <span class="text-blue-600">${result.score} / 6</span></p>
+                    <p class="font-bold text-gray-800">Examiner Feedback:</p>
+                    <div class="text-gray-700 mt-1 bg-blue-50 p-3 rounded-md">${result.feedback.replace(/\n/g, '<br>')}</div>
+                `;
+            });
+
+            // 4. Calculate final score and grade
+            const percentage = ((totalScore / MAX_TOTAL_SCORE) * 100).toFixed(1);
+            const { grade, className } = calculateGrade(parseFloat(percentage));
+
+            // 5. Update results summary UI
+            document.getElementById('total-score').textContent = `${totalScore} / ${MAX_TOTAL_SCORE}`;
+            document.getElementById('percentage').textContent = `${percentage}%`;
+            
+            const gradeBox = document.getElementById('grade-box');
+            document.getElementById('grade').textContent = grade;
+            gradeBox.className = `p-4 text-white rounded-lg ${className}`;
+
+            resultsSummary.classList.remove('hidden');
+
+            // 6. Re-enable button and hide loading indicator
+            loadingIndicator.classList.add('hidden');
+            submitBtn.disabled = false;
+        }
+    </script>
+</body>
+</html>
